@@ -1,3 +1,7 @@
+name: gh-pages
+env:
+  PUBLISH_DIR: bin/Release/netstandard2.1/publish/wwwroot
+
 on:
   push:
     branches: [ master ]
@@ -5,22 +9,23 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+
+    - name: Publish
+      run: dotnet publish -c Release
+
+    - name: Rewrite base href
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        dotnet-version: 3.1.301
-      
-    - name: Publish with dotnet
-      run: dotnet publish --configuration Release --output build
-      
-    - name: Deploy to Github Pages
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+        html_path: ${{ env.PUBLISH_DIR }}/index.html
+        base_href: /resucito-blazor/
+
+    - name: Deploy
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v1.5.1
       with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BASE_BRANCH: master
-        BRANCH: master
-        FOLDER: build/wwwroot
-        SINGLE_COMMIT: true
+        target_branch: gh-pages
+        build_dir: ${{ env.PUBLISH_DIR }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
