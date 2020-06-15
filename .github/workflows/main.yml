@@ -1,6 +1,6 @@
 name: gh-pages
 env:
-  PUBLISH_DIR: bin/Release/netstandard2.1/publish/wwwroot
+  PUBLISH_DIR: Resucito.Blazor/bin/Release/netstandard2.1/publish/wwwroot
 
 on:
   push:
