@@ -2,8 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
-		<RazorLangVersion>3.0</RazorLangVersion>
-		<BlazorEnableCompression>false</BlazorEnableCompression>
+		<RazorLangVersion>3.0</RazorLangVersion>		
 	</PropertyGroup>
 
 	<ItemGroup>
