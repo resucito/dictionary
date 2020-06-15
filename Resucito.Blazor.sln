@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resucito.Blazor", "src\Resucito.Blazor\Resucito.Blazor.csproj", "{E3845EC8-7F4E-4A1C-879E-7FF3F5770F99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resucito.Blazor", "Resucito.Blazor\Resucito.Blazor.csproj", "{E3845EC8-7F4E-4A1C-879E-7FF3F5770F99}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resucito.Blazor.Shared", "src\Resucito.Blazor.Shared\Resucito.Blazor.Shared.csproj", "{9A1AB772-CB86-4CF2-B74F-E5EBA400E715}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{2040784A-71F1-4209-A9B2-2C5DBC4B3E03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resucito.Blazor.Shared", "Resucito.Blazor.Shared\Resucito.Blazor.Shared.csproj", "{9A1AB772-CB86-4CF2-B74F-E5EBA400E715}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{51BB41DA-4EC0-4FAE-A113-7BFF9D7DF65E}"
 	ProjectSection(SolutionItems) = preProject
