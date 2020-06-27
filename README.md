@@ -1,1 +1,3 @@
-# resucito.github.io
+# Resucito Dictionary
+
+Translate song titles from one language to another. 
