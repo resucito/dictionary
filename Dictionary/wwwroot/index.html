@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Resucito Blazor</title>
+    <title>Resucito Dictionary</title>
     <base href="/" />
     <link rel="stylesheet" href="css/mono/light.min.css" media="">
     <link rel="stylesheet" href="css/mono/dark.min.css" media="(prefers-color-scheme: dark)">
@@ -47,7 +47,13 @@
 </head>
 
 <body>
-    <app>Loading...</app>
+    <app>
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>      
+    </app>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.

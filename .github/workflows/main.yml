@@ -1,6 +1,6 @@
 name: gh-pages
 env:
-  PUBLISH_DIR: Resucito.Blazor/bin/Release/netstandard2.1/publish/wwwroot
+  PUBLISH_DIR: Dictionary/bin/Release/netstandard2.1/publish/wwwroot
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
         html_path: ${{ env.PUBLISH_DIR }}/index.html
-        base_href: /resucito-blazor/
+        base_href: /dictionary/
 
     - name: Deploy
       if: success()
