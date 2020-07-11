@@ -1,3 +1,27 @@
 ﻿@page "/"
+@using System.ComponentModel.DataAnnotations; 
 
-<p>Translate song titles from one language to another.</p>
+<p>Translate Resucito song titles from one language to another.</p>
+
+<EditForm Model="@query" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />    
+    <InputText @bind-Value="query.Title" class="rounded" placeholder="Song title" />
+    <button type="submit" class="btn primary pill">Search!</button>
+</EditForm>
+
+@code {
+    private SongQuery query = new SongQuery();
+
+    private void OnValidSubmit()
+    {
+        Console.WriteLine($"Query: {this.query.Title}");
+    }
+
+    public class SongQuery
+    {
+        [Required(ErrorMessage="Song title required.")]
+        [StringLength(64, ErrorMessage = "Song title too long (64 character limit).")]
+        public string Title { get; set; }
+    }
+}
