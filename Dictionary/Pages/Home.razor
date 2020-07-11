@@ -1,9 +1,10 @@
 ﻿@page "/"
+@inject NavigationManager NavigationManager
 @using System.ComponentModel.DataAnnotations; 
 
 <p>Translate Resucito song titles from one language to another.</p>
 
-<EditForm Model="@query" OnValidSubmit="OnValidSubmit">
+<EditForm Model="@query" OnValidSubmit="OnValidSubmit" class="tacenter">
     <DataAnnotationsValidator />
     <ValidationSummary />    
     <InputText @bind-Value="query.Title" class="rounded" placeholder="Song title" />
@@ -16,6 +17,7 @@
     private void OnValidSubmit()
     {
         Console.WriteLine($"Query: {this.query.Title}");
+        NavigationManager.NavigateTo($"songs/{this.query.Title}");
     }
 
     public class SongQuery
