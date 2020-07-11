@@ -1,0 +1,44 @@
+﻿@page "/songs/{title}"
+@inject HttpClient Http
+
+@if (MatchedSong is null)
+{
+    <p>Searching...</p>
+    @*<div class="bg-error white p rounded small">
+        <span class="large">Oh no!</span>
+        <br>
+        <p>No song found matching title @Title.</p>
+    </div>*@
+}
+else
+{
+    <h3>@MatchedSong.SpanishTitle</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Spanish</th>
+                <th>English</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@MatchedSong.SpanishTitle</td>
+                <td>@MatchedSong.EnglishTitle</td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+@code {
+    public Shared.Models.Song MatchedSong { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine(Title);
+        var songs = await Http.GetFromJsonAsync<Shared.Models.Song[]>("data/index.json");
+        MatchedSong = songs.FirstOrDefault(o => o.IsMatch(Title));
+    }
+}
