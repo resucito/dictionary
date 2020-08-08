@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Text.Json.Serialization;
 
 namespace Dictionary.Shared.Models
@@ -10,8 +11,9 @@ namespace Dictionary.Shared.Models
         [JsonPropertyName("spanish_title")]
         public string SpanishTitle { get; set; }
         [JsonPropertyName("english_title")]
-        public string EnglishTitle { get; set; }        
+        public string EnglishTitle { get; set; }                
 
+        [Obsolete]
         public bool IsMatch(string query)
         {
             var compareInfo = CultureInfo.InvariantCulture.CompareInfo;

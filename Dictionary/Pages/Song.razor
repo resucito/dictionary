@@ -1,7 +1,8 @@
 ﻿@page "/songs/{title}"
 @inject HttpClient Http
+@inject Dictionary.Shared.Interfaces.ISongMatcher SongMatcher
 
-@if (MatchedSong is null)
+@if (!songs.Any())
 {
     <p>Searching for @Title...</p>
     @*<div class="bg-error white p rounded small">
@@ -12,7 +13,7 @@
 }
 else
 {
-    <h3>@MatchedSong.SpanishTitle</h3>
+    @*<h3>@MatchedSong.SpanishTitle</h3>*@
     <table class="table">
         <thead>
             <tr>
@@ -21,24 +22,33 @@ else
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>@MatchedSong.SpanishTitle</td>
-                <td>@MatchedSong.EnglishTitle</td>
-            </tr>
+            @foreach (var song in songs)
+            {
+                <tr>
+                    <td>@song.SpanishTitle</td>
+                    <td>@song.EnglishTitle</td>
+                </tr>
+            }
         </tbody>
     </table>
 }
 
 @code {
-    public Shared.Models.Song MatchedSong { get; set; }
+    private List<Shared.Models.Song> songs = new List<Shared.Models.Song>();
 
     [Parameter]
     public string Title { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine(Title);
-        var songs = await Http.GetFromJsonAsync<Shared.Models.Song[]>("data/index.json");
-        MatchedSong = songs.FirstOrDefault(o => o.IsMatch(Title));
+        var index = await Http.GetFromJsonAsync<Shared.Models.Song[]>("data/index.json");
+        foreach (var song in index)
+        {
+            if (await SongMatcher.MatchAsync(song, Title))
+            {
+                Console.WriteLine($"added {song.SpanishTitle}");
+                this.songs.Add(song);
+            }
+        }
     }
 }
