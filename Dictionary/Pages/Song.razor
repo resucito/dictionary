@@ -2,18 +2,21 @@
 @inject HttpClient Http
 @inject Dictionary.Shared.Interfaces.ISongMatcher SongMatcher
 
-@if (!songs.Any())
+@if (this.matchFailed)
 {
-    <p>Searching for @Title...</p>
-    @*<div class="bg-error white p rounded small">
-            <span class="large">Oh no!</span>
-            <br>
-            <p>No song found matching title @Title.</p>
-        </div>*@
+    <div class="bg-error white p rounded small">
+        <span class="large">Oh no!</span>
+        <br>
+        <p>No song found matching "@Title".</p>
+    </div>
+}
+else if (!songs.Any(
+{
+    <p>Searching for "@Title"...</p>
 }
 else
 {
-    @*<h3>@MatchedSong.SpanishTitle</h3>*@
+    <h3>@songs.Count songs found matching "@Title"</h3>
     <table class="table">
         <thead>
             <tr>
@@ -34,6 +37,7 @@ else
 }
 
 @code {
+    private bool matchFailed;
     private List<Shared.Models.Song> songs = new List<Shared.Models.Song>();
 
     [Parameter]
@@ -50,5 +54,7 @@ else
                 this.songs.Add(song);
             }
         }
+        if (!this.songs.Any())
+            this.matchFailed = true;
     }
 }
