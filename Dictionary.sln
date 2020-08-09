@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dictionary", "Dictionary\Di
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dictionary.Shared", "Dictionary.Shared\Dictionary.Shared.csproj", "{3BD5FDE8-9013-4A95-8C89-A4392CA34B16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionary.Shared.Tests", "Dictionary.Shared.Tests\Dictionary.Shared.Tests.csproj", "{17C9B804-BF6F-409F-9EE6-D6157222A701}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3BD5FDE8-9013-4A95-8C89-A4392CA34B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BD5FDE8-9013-4A95-8C89-A4392CA34B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BD5FDE8-9013-4A95-8C89-A4392CA34B16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17C9B804-BF6F-409F-9EE6-D6157222A701}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17C9B804-BF6F-409F-9EE6-D6157222A701}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17C9B804-BF6F-409F-9EE6-D6157222A701}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17C9B804-BF6F-409F-9EE6-D6157222A701}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

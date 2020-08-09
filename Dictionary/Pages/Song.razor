@@ -1,0 +1,60 @@
+﻿@page "/songs/{title}"
+@inject HttpClient Http
+@inject Dictionary.Shared.Interfaces.ISongMatcher SongMatcher
+
+@if (this.matchFailed)
+{
+    <div class="bg-error white p rounded small">
+        <span class="large">Oh no!</span>
+        <br>
+        <p>No song found matching "@Title".</p>
+    </div>
+}
+else if (!songs.Any(
+{
+    <p>Searching for "@Title"...</p>
+}
+else
+{
+    <h3>@songs.Count songs found matching "@Title"</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Spanish</th>
+                <th>English</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var song in songs)
+            {
+                <tr>
+                    <td>@song.SpanishTitle</td>
+                    <td>@song.EnglishTitle</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private bool matchFailed;
+    private List<Shared.Models.Song> songs = new List<Shared.Models.Song>();
+
+    [Parameter]
+    public string Title { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var index = await Http.GetFromJsonAsync<Shared.Models.Song[]>("data/index.json");
+        foreach (var song in index)
+        {
+            if (await SongMatcher.MatchAsync(song, Title))
+            {
+                Console.WriteLine($"added {song.SpanishTitle}");
+                this.songs.Add(song);
+            }
+        }
+        if (!this.songs.Any())
+            this.matchFailed = true;
+    }
+}

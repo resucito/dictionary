@@ -1,6 +1,5 @@
 @page "/index"
 @inject HttpClient Http
-@using Dictionary.Shared.Models;
 
 <h3>Song Index</h3>
 
@@ -30,10 +29,10 @@ else
 }
 
 @code {
-    private Song[] songs;
+    private Shared.Models.Song[] songs;
 
     protected override async Task OnInitializedAsync()
     {
-        songs = await Http.GetFromJsonAsync<Song[]>("data/index.json");
+        songs = await Http.GetFromJsonAsync<Shared.Models.Song[]>("data/index.json");
     }    
 }
