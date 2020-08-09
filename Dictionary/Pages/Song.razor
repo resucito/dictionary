@@ -2,7 +2,7 @@
 @inject HttpClient Http
 @inject Dictionary.Shared.Interfaces.ISongMatcher SongMatcher
 
-@if (this.matchFailed)
+@if (matchFailed)
 {
     <div class="bg-error white p rounded small">
         <span class="large">Oh no!</span>
@@ -10,7 +10,7 @@
         <p>No song found matching "@Title".</p>
     </div>
 }
-else if (!songs.Any(
+else if (!songs.Any())
 {
     <p>Searching for "@Title"...</p>
 }
